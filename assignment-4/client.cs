@@ -10,6 +10,15 @@ namespace ClientsCWong
 
 
 
+
+        public Client()
+        {
+            FirstName = "XXXXX";
+            LastName = "XXXXX";
+            Weight = 0;
+            Height = 0;
+        }
+
         //Greedy Constructor
         public Client(string firstName, string lastName, int weight, int height)
         {
@@ -69,7 +78,7 @@ namespace ClientsCWong
         {
             get
             {
-                double score = Weight / (Height * Height) * 703;
+                double score = (Weight / (Height * Height) * 703);
                 return score;
             }
         }
@@ -78,14 +87,15 @@ namespace ClientsCWong
         {
             get
             {
+                double score = BmiScore;
                 string status = "";
-                if(BmiScore <= 18.4)
+                if(score <= 18.4)
                     status = "Underweight";
-                if(BmiScore >= 18.5 && BmiScore <= 24.9)
+                if(score >= 18.5 && score <= 24.9)
                     status = "Normal";
-                if(BmiScore <= 25.0 && BmiScore <= 39.9)
+                if(score <= 25.0 && score <= 39.9)
                     status = "Overweight";
-                if(BmiScore >= 40)
+                if(score >= 40)
                     status = "Obese";
                 
                 return status;

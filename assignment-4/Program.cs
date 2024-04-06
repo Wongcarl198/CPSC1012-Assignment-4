@@ -123,6 +123,8 @@ void ShowClientInfo(Client client)
     Console.WriteLine($"Client Name:\t{client.FullName}");
     Console.WriteLine($"BMI Score  :\t{client.BmiScore}");
     Console.WriteLine($"BMI Status :\t{client.BmiStatus}");
+    Console.WriteLine($"Weight {client.Weight}");
+    Console.WriteLine($"Height {client.Height}");
 }
 
 Client NewClient()
