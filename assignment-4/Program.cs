@@ -26,15 +26,15 @@ while (goAgain)
             while (true)
             {
                 DisplayEditMenu();
-                string userEditInput = Prompt("\nEnter a Edit Menu Choice: ").ToUpper();
+                string userEditInput = Prompt("\nWhat would you like to edit?: ").ToUpper();
                 if (userEditInput == "F")
-                    Console.WriteLine("You are changing the first name");
+                    GetFirstName(userClient);
                 if (userEditInput == "L")
-                    Console.WriteLine("You are change the last name");
+                    GetLastName(userClient);
                 if (userEditInput == "H")
-                    Console.WriteLine("You are changing the height");
+                    GetHeight(userClient);
                 if (userEditInput == "W")
-                    Console.WriteLine("You are changing the weight");
+                    GetWeight(userClient);
                 if (userEditInput == "R")
                     throw new Exception("Returning to Main Menu");
             }
@@ -99,7 +99,7 @@ int PromptInt(string msg, double min)
     {
         try
         {
-            Console.Write($"{msg}: ");
+            Console.Write($"{msg}");
             userInput = int.Parse(Console.ReadLine());
             if (userInput <= min)
                 throw new Exception($"Measurement must be greater than {min}.");
