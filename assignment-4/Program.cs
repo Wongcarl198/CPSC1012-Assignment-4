@@ -1,4 +1,8 @@
-﻿
+﻿using ClientsCWong;
+
+Client userClient = new();
+
+
 bool goAgain = true;
 while (goAgain)
 {
@@ -9,7 +13,7 @@ while (goAgain)
         if (userMainInput == "N")
             Console.WriteLine("New client");
         if (userMainInput == "S")
-            Console.WriteLine("show client");
+            ShowClientInfo(userClient);
         
         if (userMainInput == "Q")
         {
@@ -41,7 +45,6 @@ while (goAgain)
     {
         Console.WriteLine(ex.Message);
     }
-    
 }
 
 
@@ -89,25 +92,36 @@ string Prompt(string prompt)
     return userInput;
 }
 
-double PromptDoubleBetweenMinMax(string msg, double max, double min)
+double PromptDouble(string msg, double min)
 {
     double userInput = 0;
-    while(true)
+    
+    
+    try
     {
-        try
-        {
-            Console.Write($"{msg} between {min} and {max}: ");
-            userInput = double.Parse(Console.ReadLine());
-            if (userInput < min || userInput > max)
-                {
-                    throw new Exception($"Must be between {min:n2} and {max:n2}");
-                }
-            break;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Invalid: {ex.Message}");
-        }
+        Console.Write($"{msg}: ");
+        userInput = double.Parse(Console.ReadLine());
     }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Invalid: {ex.Message}");
+    }
+    
     return userInput;
+}
+
+void ShowClientInfo(Client client)
+{
+    if(client == null)
+        throw new Exception($"No Client In Memory");
+    Console.WriteLine($"\n=== Client Info ===");
+    Console.WriteLine($"Client Name:\t{client.FullName}");
+    Console.WriteLine($"BMI Score  :\t{client.BmiScore}");
+    Console.WriteLine($"BMI Status :\t{client.BmiStatus}");
+}
+
+Client NewClient()
+{
+    Client userClient = new();
+    
 }
