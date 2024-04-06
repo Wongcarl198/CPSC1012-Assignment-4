@@ -11,10 +11,10 @@ namespace ClientsCWong
 
 
         //Greedy Constructor
-        public Client(string first_Name, string last_Name, int weight, int height)
+        public Client(string firstName, string lastName, int weight, int height)
         {
-            FirstName = first_Name;
-            LastName = last_Name;
+            FirstName = firstName;
+            LastName = lastName;
             Weight = weight;
             Height = height; 
         }

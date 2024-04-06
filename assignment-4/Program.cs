@@ -11,7 +11,7 @@ while (goAgain)
         DisplayMainMenu();
         string userMainInput = Prompt("\nEnter a Main Menu Choice: ").ToUpper();
         if (userMainInput == "N")
-            Console.WriteLine("New client");
+            userClient = NewClient();
         if (userMainInput == "S")
             ShowClientInfo(userClient);
         
@@ -92,19 +92,24 @@ string Prompt(string prompt)
     return userInput;
 }
 
-double PromptDouble(string msg, double min)
+int PromptInt(string msg, double min)
 {
-    double userInput = 0;
-    
-    
-    try
+    int userInput = 0;
+    while(true)
     {
-        Console.Write($"{msg}: ");
-        userInput = double.Parse(Console.ReadLine());
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Invalid: {ex.Message}");
+        try
+        {
+            Console.Write($"{msg}: ");
+            userInput = int.Parse(Console.ReadLine());
+            if (userInput <= min)
+                throw new Exception($"Measurement must be greater than {min}.");
+            break;
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Invalid: {ex.Message}");
+        }
     }
     
     return userInput;
@@ -123,5 +128,34 @@ void ShowClientInfo(Client client)
 Client NewClient()
 {
     Client userClient = new();
-    
+    GetFirstName(userClient);
+    GetLastName(userClient);
+    GetWeight(userClient);
+    GetHeight(userClient);
+
+    return userClient;
+}
+
+void GetFirstName(Client client)
+{
+    string userInput = Prompt("Enter client's first name: ");
+    client.FirstName = userInput;
+}   
+
+void GetLastName(Client client)
+{
+    string userInput = Prompt("Enter client's last name: ");
+    client.LastName = userInput;
+}
+
+void GetWeight(Client client)
+{
+    int userInput = PromptInt("Enter client's weight in pounds: ", 0);
+    client.Weight = userInput;
+}
+
+void GetHeight(Client client)
+{
+    int userInput = PromptInt("Enter client's height in inches: ", 0);
+    client.Height = userInput;
 }
