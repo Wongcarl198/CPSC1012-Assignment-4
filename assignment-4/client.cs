@@ -95,7 +95,7 @@ namespace ClientsCWong
                 {
                     status = "Normal";
                 }
-                else if(score <= 25.0 && score <= 39.9)
+                else if(score >= 25.0 && score <= 39.9)
                 {
                     status = "Overweight";
                 }
@@ -103,11 +103,6 @@ namespace ClientsCWong
                 {
                     status = "Obese";
                 }
-                else
-                {
-                    status = "";
-                }
-                
                 return status;
                 
             }

@@ -50,7 +50,7 @@ while (goAgain)
 
 void DisplayMainMenu()
 {
-    Console.WriteLine("Menu Options");
+    Console.WriteLine("\nMenu Options");
     Console.WriteLine("============");
     Console.WriteLine("[N]ew client");
     Console.WriteLine("[S]how client BMI info");
@@ -60,7 +60,7 @@ void DisplayMainMenu()
 
 void DisplayEditMenu()
 {
-    Console.WriteLine("Edit Client");
+    Console.WriteLine("\nEdit Client");
     Console.WriteLine("===========");
     Console.WriteLine("[F]irst Name");
     Console.WriteLine("[L]ast Name");
