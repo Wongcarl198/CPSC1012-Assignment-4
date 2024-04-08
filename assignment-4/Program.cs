@@ -117,7 +117,7 @@ int PromptInt(string msg, double min)
 
 void ShowClientInfo(Client client)
 {
-    if(client == null)
+    if(client.FirstName == "XXXXX" || client.LastName == "XXXXX")
         throw new Exception($"No Client In Memory");
     Console.WriteLine($"\n=== Client Info ===");
     Console.WriteLine($"Client Name:\t{client.FullName}");
