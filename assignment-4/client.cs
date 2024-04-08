@@ -5,8 +5,8 @@ namespace ClientsCWong
         //private fields
         private string _firstName;
         private string _lastName;
-        private int _weight;
-        private int _height;
+        private double _weight;
+        private double _height;
 
 
 
@@ -15,8 +15,6 @@ namespace ClientsCWong
         {
             FirstName = "XXXXX";
             LastName = "XXXXX";
-            Weight = 0;
-            Height = 0;
         }
 
         //Greedy Constructor
@@ -52,7 +50,7 @@ namespace ClientsCWong
             }
         }
 
-        public int Weight
+        public double Weight
         {
             get {return _weight; }
             set
@@ -63,7 +61,7 @@ namespace ClientsCWong
             }
         }
 
-        public int Height
+        public double Height
         {
             get {return _height; }
             set
@@ -90,13 +88,25 @@ namespace ClientsCWong
                 double score = BmiScore;
                 string status = "";
                 if(score <= 18.4)
+                {
                     status = "Underweight";
-                if(score >= 18.5 && score <= 24.9)
+                }
+                else if(score >= 18.5 && score <= 24.9)
+                {
                     status = "Normal";
-                if(score <= 25.0 && score <= 39.9)
+                }
+                else if(score <= 25.0 && score <= 39.9)
+                {
                     status = "Overweight";
-                if(score >= 40)
+                }
+                else if(score >= 40)
+                {
                     status = "Obese";
+                }
+                else
+                {
+                    status = "";
+                }
                 
                 return status;
                 

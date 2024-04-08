@@ -121,10 +121,8 @@ void ShowClientInfo(Client client)
         throw new Exception($"No Client In Memory");
     Console.WriteLine($"\n=== Client Info ===");
     Console.WriteLine($"Client Name:\t{client.FullName}");
-    Console.WriteLine($"BMI Score  :\t{client.BmiScore}");
+    Console.WriteLine($"BMI Score  :\t{client.BmiScore:f2}");
     Console.WriteLine($"BMI Status :\t{client.BmiStatus}");
-    Console.WriteLine($"Weight {client.Weight}");
-    Console.WriteLine($"Height {client.Height}");
 }
 
 Client NewClient()
