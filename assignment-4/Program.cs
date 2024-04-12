@@ -1,7 +1,9 @@
 ﻿using ClientsCWong;
 
 Client userClient = new();
+List<Client> ListOfClients = [];
 
+LoadFileValuesToProgram(ListOfClients);
 
 bool goAgain = true;
 while (goAgain)
@@ -11,13 +13,20 @@ while (goAgain)
         DisplayMainMenu();
         string userMainInput = Prompt("\nEnter a Main Menu Choice: ").ToUpper();
         if (userMainInput == "N")
+        {
             userClient = NewClient();
+            addClientToList(userClient, ListOfClients);
+        }
         if (userMainInput == "S")
             ShowClientInfo(userClient);
+        
+        if (userMainInput == "D")
+            DisplayAllClientsInfo(ListOfClients);
         
         if (userMainInput == "Q")
         {
             goAgain = false;
+            SaveMemoryValuesToFile(ListOfClients);
             throw new Exception("Exiting program. Have a good day!");      
         }
     
@@ -55,6 +64,7 @@ void DisplayMainMenu()
     Console.WriteLine("[N]ew client");
     Console.WriteLine("[S]how client BMI info");
     Console.WriteLine("[E]dit client");
+    Console.WriteLine("[D]isplay all clients info");
     Console.WriteLine("[Q]uit");
 }
 
@@ -158,4 +168,56 @@ void GetHeight(Client client)
 {
     int userInput = PromptInt("Enter client's height in inches: ", 0);
     client.Height = userInput;
+}
+
+void LoadFileValuesToProgram(List<Client> ListOfClients)
+{
+    while(true)
+    {
+        try
+        {
+            string fileName = "cilents.csv";
+            string filePath = $"./data/{fileName}";
+            if (!File.Exists(filePath))
+                throw new Exception($"{fileName} does not exit.");
+            string[] csvFile = File.ReadAllLines(filePath);
+            for(int i = 0; i < csvFile.Length; i++)
+            {
+                string[] info = csvFile[i].Split(',');
+                Client userClient = new(info[0], info[1], int.Parse(info[2]), int.Parse(info[3]));
+                ListOfClients.Add(userClient);
+            }
+            Console.WriteLine($"Load complete. {fileName} has {ListOfClients.Count} entries");
+            break;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"{ex.Message}");
+        }
+    }
+}
+
+void SaveMemoryValuesToFile(List<Client> ListOfClients)
+{
+    string fileName = "cilents.csv";
+    string filePath = $"./data/{fileName}";
+    string[] csvFileLines = new string[ListOfClients.Count];
+    for (int i = 0; i < ListOfClients.Count; i++)
+    {
+        Console.WriteLine($"{ListOfClients[i]}");
+        csvFileLines[i] = ListOfClients[i].ToString();
+    }
+    File.WriteAllLines(filePath, csvFileLines);
+    Console.WriteLine($"Save complete. {fileName} has {ListOfClients.Count} entries.");
+}
+
+void addClientToList(Client userClient, List<Client> ListOfClients)
+{
+    ListOfClients.Add(userClient);
+}
+
+void DisplayAllClientsInfo(List<Client> ListOfClients)
+{
+    foreach(Client client in ListOfClients)
+        ShowClientInfo(client);
 }
