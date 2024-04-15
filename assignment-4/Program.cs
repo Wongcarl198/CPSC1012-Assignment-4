@@ -18,7 +18,7 @@ while (goAgain)
             addClientToList(userClient, ListOfClients);
         }
         if (userMainInput == "S")
-            ShowClientInfo(userClient);
+            ShowClientBmiInfo(userClient);
         
         if (userMainInput == "D")
             DisplayAllClientsInfo(ListOfClients);
@@ -125,7 +125,7 @@ int PromptInt(string msg, double min)
     return userInput;
 }
 
-void ShowClientInfo(Client client)
+void ShowClientBmiInfo(Client client)
 {
     if(client.FirstName == "XXXXX" || client.LastName == "XXXXX")
         throw new Exception($"No Client In Memory");
@@ -201,7 +201,6 @@ void SaveMemoryValuesToFile(List<Client> ListOfClients)
 {
     string fileName = "cilents.csv";
     string filePath = $"./data/{fileName}";
-    string[] csvFileLines = new string[ListOfClients.Count];
     List<string> clientsList = [];
     foreach (Client item in ListOfClients) {
         clientsList.Add($"{item.FirstName}, {item.LastName}, {item.Weight}, {item.Height}");
@@ -215,8 +214,12 @@ void addClientToList(Client userClient, List<Client> ListOfClients)
     ListOfClients.Add(userClient);
 }
 
+
 void DisplayAllClientsInfo(List<Client> ListOfClients)
 {
+    int index = 0;
+    Console.WriteLine("===Clients===");
     foreach(Client client in ListOfClients)
-        ShowClientInfo(client);
+        Console.WriteLine($"[{index++}] {client.FirstName}, {client.LastName}");
+        
 }
