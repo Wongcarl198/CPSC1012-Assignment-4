@@ -18,7 +18,7 @@ namespace ClientsCWong
         }
 
         //Greedy Constructor
-        public Client(string firstName, string lastName, int weight, int height)
+        public Client(string firstName, string lastName, double weight, double height)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -91,11 +91,11 @@ namespace ClientsCWong
                 {
                     status = "Underweight";
                 }
-                else if(score >= 18.5 && score <= 24.9)
+                else if(score >= 18.5 && score <= 24.99)
                 {
                     status = "Normal";
                 }
-                else if(score >= 25.0 && score <= 39.9)
+                else if(score >= 25.0 && score <= 39.99)
                 {
                     status = "Overweight";
                 }

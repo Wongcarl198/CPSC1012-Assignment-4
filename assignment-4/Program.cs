@@ -202,12 +202,11 @@ void SaveMemoryValuesToFile(List<Client> ListOfClients)
     string fileName = "cilents.csv";
     string filePath = $"./data/{fileName}";
     string[] csvFileLines = new string[ListOfClients.Count];
-    for (int i = 0; i < ListOfClients.Count; i++)
-    {
-        Console.WriteLine($"{ListOfClients[i]}");
-        csvFileLines[i] = ListOfClients[i].ToString();
+    List<string> clientsList = [];
+    foreach (Client item in ListOfClients) {
+        clientsList.Add($"{item.FirstName}, {item.LastName}, {item.Weight}, {item.Height}");
     }
-    File.WriteAllLines(filePath, csvFileLines);
+    File.WriteAllLines(filePath, clientsList);
     Console.WriteLine($"Save complete. {fileName} has {ListOfClients.Count} entries.");
 }
 
