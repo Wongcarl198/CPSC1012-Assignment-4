@@ -22,6 +22,12 @@ while (goAgain)
         
         if (userMainInput == "D")
             DisplayAllClientsInfo(ListOfClients);
+
+        if (userMainInput == "F")
+            userClient = FindClient(ListOfClients);
+        
+        if (userMainInput == "R")
+            RemoveClient(userClient, ListOfClients);
         
         if (userMainInput == "Q")
         {
@@ -64,7 +70,9 @@ void DisplayMainMenu()
     Console.WriteLine("[N]ew client");
     Console.WriteLine("[S]how client BMI info");
     Console.WriteLine("[E]dit client");
-    Console.WriteLine("[D]isplay all clients info");
+    Console.WriteLine("[D]isplay all clients");
+    Console.WriteLine("[F]ind Client");
+    Console.WriteLine("[R]emove Client");
     Console.WriteLine("[Q]uit");
 }
 
@@ -127,7 +135,7 @@ int PromptInt(string msg, double min)
 
 void ShowClientBmiInfo(Client client)
 {
-    if(client.FirstName == "XXXXX" || client.LastName == "XXXXX")
+    if(client.FirstName == "XXXXX" || client.LastName == "XXXXX") 
         throw new Exception($"No Client In Memory");
     Console.WriteLine($"\n=== Client Info ===");
     Console.WriteLine($"Client Name:\t{client.FullName}");
@@ -222,4 +230,27 @@ void DisplayAllClientsInfo(List<Client> ListOfClients)
     foreach(Client client in ListOfClients)
         Console.WriteLine($"[{index++}] {client.FirstName}, {client.LastName}");
         
+}
+
+Client FindClient(List<Client> ListOfClients)
+{
+    string clientName = Prompt($"Enter the Client's First or Last Name: ");
+    foreach(Client client in ListOfClients)
+        if(client.FirstName.Contains(clientName) || client.LastName.Contains(clientName))
+            return client;
+    
+    
+    Console.WriteLine("No Clients Match");
+    return null;
+        
+}
+
+Client RemoveClient(Client userClient, List<Client> ListOfClients)
+{
+    if(userClient == null)
+        throw new Exception($"No Client provided to remove from the list");
+    
+    
+    ListOfClients.Remove(userClient);
+    Console.WriteLine("Client Removed");  
 }
