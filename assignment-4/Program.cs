@@ -218,7 +218,7 @@ void addClientToList(Client userClient, List<Client> ListOfClients)
 void DisplayAllClientsInfo(List<Client> ListOfClients)
 {
     int index = 0;
-    Console.WriteLine("===Clients===");
+    Console.WriteLine("\n===Clients===");
     foreach(Client client in ListOfClients)
         Console.WriteLine($"[{index++}] {client.FirstName}, {client.LastName}");
         
