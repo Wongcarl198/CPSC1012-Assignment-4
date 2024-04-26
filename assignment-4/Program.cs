@@ -245,7 +245,7 @@ Client FindClient(List<Client> ListOfClients)
         
 }
 
-Client RemoveClient(Client userClient, List<Client> ListOfClients)
+void RemoveClient(Client userClient, List<Client> ListOfClients)
 {
     if(userClient == null)
         throw new Exception($"No Client provided to remove from the list");
